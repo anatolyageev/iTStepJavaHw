@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common :: headerFragment">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="common::nav"></div>
+<div>
+    <form th:action="@{/update}" th:object="${product}" method="post">
+        <input type="textro" name="id" th:value="${product.id}" readonly="">
+        <input type="text" name="label" th:value="${product.getLabel()}">
+        <input type="text" name="price" th:value="${product.getPrice()}">
+        <input type="text" name="description" th:value="${product.getDescription()}">
+        <button type="submit">UPDATE</button>
+    </form>
+</div>
+
+</body>
+</html>
