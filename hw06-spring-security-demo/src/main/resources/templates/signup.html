@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="sign_form.css">
+</head>
+<body>
+<form id="signup_form" name="user" th:action="@{/signup}" method="post">
+   <div class="container">
+        <h2>Please sign up</h2>
+        <div>Username
+            <input type="text" name="username"
+                   placeholder="Letters, digits, _"
+                   pattern="[a-zA-Z0-9_]+"
+                   required="required">
+        </div>
+        <div>Password
+            <input type="password" name="passwordOne"
+                   pattern="[a-zA-Z0-9]{8,}"
+                   placeholder="At least 8 letters or digits"
+                   required="required">
+        </div>
+        <div>Confirm password
+            <input type="password" name="passwordTwo"
+                   pattern="[a-zA-Z0-9]{8,}"
+                   placeholder="At least 8 letters or digits"
+                   required="required">
+        </div>
+        <div>email
+            <input type="email" name="email"
+                   placeholder="dema@kkj.com"
+                   required="required">
+        </div>
+        <button type="submit" value="Sign up">Sign Up</button>
+        <a href="/login">Do you have an account? Sign in</a>
+    </div>
+    <script>
+        function check() {
+            let password = document.getElementById('password').value
+            let confirm_passsword = document.getElementById('confirm_password').value
+            let msg = document.getElementById('error')
+            msg.innerText = ''
+
+            if (password != confirm_passsword) {
+                msg.innerHTML = 'Confirm password does not match!'
+                return false
+            } else {
+                msg.innerText = ''
+                return true
+            }
+        }
+    </script>
+</form>
+</body>
+</html>
