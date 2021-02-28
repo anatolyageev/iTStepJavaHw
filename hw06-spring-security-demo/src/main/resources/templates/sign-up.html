@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="sign_form.css">
+</head>
+<body>
+<form id="signup_form" th:object="${user}" th:action="@{/sign-up}" method="post">
+    <div class="container">
+        <h2>Please sign up</h2>
+        <h3 th:text="${message}"></h3>
+        <div>User Name
+            <input type="text" placeholder="Letters, digits, _" th:field="*{username}" required="required">
+            <p th:each="error: ${#fields.errors('username')}" th:text="${error}">Validation error</p>
+        </div>
+        <div>Password
+            <input type="password" pattern="[a-zA-Z0-9]{8,}" th:field="*{password}" required="required">
+            <p th:each="error : ${#fields.errors('password')}"
+               th:text="${error}">Validation error</p>
+        </div>
+        <div>Confirm password
+            <input type="password" pattern="[a-zA-Z0-9]{8,}" th:field="*{passwordConfirm}" required="required">
+        </div>
+        <div>email
+            <input type="email" placeholder="dema@kkj.com" th:field="*{email}" required="required">
+            <p th:each="error : ${#fields.errors('email')}"
+               th:text="${error}">Validation error</p>
+        </div>
+        <button type="submit" value="Sign up">Sign Up</button>
+        <a href="/login">Do you have an account? Sign in</a>
+    </div>
+    <script>
+        function check() {
+            let password = document.getElementById('password').value
+            let confirm_passsword = document.getElementById('confirm_password').value
+            let msg = document.getElementById('error')
+            msg.innerText = ''
+
+            if (password != confirm_passsword) {
+                msg.innerHTML = 'Confirm password does not match!'
+                return false
+            } else {
+                msg.innerText = ''
+                return true
+            }
+        }
+    </script>
+</form>
+</body>
+</html>
