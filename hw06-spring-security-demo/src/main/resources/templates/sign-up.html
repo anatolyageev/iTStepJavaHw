@@ -6,31 +6,26 @@
     <link rel="stylesheet" href="sign_form.css">
 </head>
 <body>
-<form id="signup_form" name="user" th:action="@{/signup}" method="post">
-   <div class="container">
+<form id="signup_form" th:object="${user}" th:action="@{/sign-up}" method="post">
+    <div class="container">
         <h2>Please sign up</h2>
-        <div>Username
-            <input type="text" name="username"
-                   placeholder="Letters, digits, _"
-                   pattern="[a-zA-Z0-9_]+"
-                   required="required">
+        <h3 th:text="${message}"></h3>
+        <div>User Name
+            <input type="text" placeholder="Letters, digits, _" th:field="*{username}" required="required">
+            <p th:each="error: ${#fields.errors('username')}" th:text="${error}">Validation error</p>
         </div>
         <div>Password
-            <input type="password" name="passwordOne"
-                   pattern="[a-zA-Z0-9]{8,}"
-                   placeholder="At least 8 letters or digits"
-                   required="required">
+            <input type="password" pattern="[a-zA-Z0-9]{8,}" th:field="*{password}" required="required">
+            <p th:each="error : ${#fields.errors('password')}"
+               th:text="${error}">Validation error</p>
         </div>
         <div>Confirm password
-            <input type="password" name="passwordTwo"
-                   pattern="[a-zA-Z0-9]{8,}"
-                   placeholder="At least 8 letters or digits"
-                   required="required">
+            <input type="password" pattern="[a-zA-Z0-9]{8,}" th:field="*{passwordConfirm}" required="required">
         </div>
         <div>email
-            <input type="email" name="email"
-                   placeholder="dema@kkj.com"
-                   required="required">
+            <input type="email" placeholder="dema@kkj.com" th:field="*{email}" required="required">
+            <p th:each="error : ${#fields.errors('email')}"
+               th:text="${error}">Validation error</p>
         </div>
         <button type="submit" value="Sign up">Sign Up</button>
         <a href="/login">Do you have an account? Sign in</a>

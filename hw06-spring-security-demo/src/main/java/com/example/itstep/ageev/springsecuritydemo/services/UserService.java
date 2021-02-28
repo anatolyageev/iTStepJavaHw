@@ -1,9 +1,9 @@
 package com.example.itstep.ageev.springsecuritydemo.services;
 
-
 import com.example.itstep.ageev.springsecuritydemo.dao.UserRepositiry;
 import com.example.itstep.ageev.springsecuritydemo.domain.User;
 import com.example.itstep.ageev.springsecuritydemo.domain.UserSecurity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class UserService implements UserDetailsService {
     private UserRepositiry userRepositiry;
 
-
+    @Autowired
     public UserService(UserRepositiry userRepositiry) {
         this.userRepositiry = userRepositiry;
     }
